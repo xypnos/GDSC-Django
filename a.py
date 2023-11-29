@@ -69,3 +69,72 @@ def additional_analysis(word_freq):
     longest_words = [word for word in word_freq.keys() if len(word) == max(map(len, word_freq.keys()))]
     print(f"Longest words: {', '.join(longest_words)}")
 
+# Task-2 Breakdown:
+# 1: Calculate Word Lengths
+#   Write a function that takes the list of words and calculates the length of each word.
+#   Store the word lengths in a new list.
+    def calculate_word_lengths(words):
+        return [len(word) for word in words]
+
+# 2: Average Word Length
+#   Write a function that calculates the average length of words in the text.
+#   Use the word lengths list from  1 to compute the average.
+def average_word_length(word_lengths):
+    return sum(word_lengths) / len(word_lengths) if len(word_lengths) > 0 else 0
+
+# 3: Longest Word
+#   Write a function that finds the longest word in the text.
+#   Iterate over the list of words and keep track of the longest word found so far.
+#   Display the longest word and its length.
+def find_longest_word(words):
+    if not words:
+        return None, 0
+
+    longest_word = ""
+    max_length = 0
+
+    for word in words:
+        if len(word) > max_length:
+            longest_word = word
+            max_length = len(word)
+
+    return longest_word, max_length
+
+# 4: Shortest Word
+#   Write a function that finds the shortest word in the text.
+#   Iterate over the list of words and keep track of the shortest word found so far.
+#   Display the shortest word and its length.
+def find_shortest_word(words):
+    if not words:
+        return None, 0
+
+    shortest_word = words[0]
+    min_length = len(words[0])
+
+    for word in words[1:]:
+        if len(word) < min_length:
+            shortest_word = word
+            min_length = len(word)
+
+    return shortest_word, min_length
+
+# 5: Word Length Distribution
+#   Write a function that counts the frequency of each word length in the text.
+#   Store the word length frequencies in a dictionary.
+def word_length_distribution(words):
+    length_freq = {}
+
+    for word in words:
+        length = len(word)
+        length_freq[length] = length_freq.get(length, 0) + 1
+
+    return length_freq
+
+# 6: Display Word Length Distribution
+#   Write a function that displays the word length distribution in ascending order.
+#   Print the word length and its corresponding frequency.
+def display_word_length_distribution(length_freq):
+    for length, frequency in sorted(length_freq.items()):
+        print(f"Length {length}: {frequency} occurrences")
+
+
